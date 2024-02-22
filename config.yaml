@@ -1,0 +1,6 @@
+config:
+  install_tree:
+    root: /orcd/software/community/001/rocky8
+  install_path_scheme: '{name}/{version}/{hash:3}'
+
+
