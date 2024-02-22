@@ -16,7 +16,7 @@ source spack/share/spack/setup-env.sh
 export SPACK_USER_CONFIG_PATH=`pwd`/user_config
 ```
 
-The congifure files include `config.yaml`, `compilers.yaml`, `modules.yaml`, `packages.yaml`, and `upstreams.yaml`. Put them in the directoty `$spack_work/use_config`. They will overright the default. 
+The congifure files include `config.yaml`, `compilers.yaml`, `modules.yaml`, `packages.yaml`, and `upstreams.yaml`. Put them in the directoty `$spack_work/use_config`. The variables set in the configure files will overright the default ones. 
 
 > Especally for `config.yaml`, it also works to put it in `$spack_work/spack/etc/spack`.
 
@@ -26,7 +26,7 @@ The congifure files include `config.yaml`, `compilers.yaml`, `modules.yaml`, `pa
 Here are notes of the modifications on the configure files.
 
 ***config.yaml:***
-* Set install root path as `orcd/software/community/001/rocky8`. Installation files will be automacitally created in there. 
+* Set the install root path as `orcd/software/community/001/rocky8`. Installation files will be automacitally created in there. 
 * Set install path scheme.
 
 ***compilers.yaml:***
@@ -66,18 +66,22 @@ Then the `LD_LIBRARY_PATH` will be set in the module file.
 
 Use the `gcc 12.2.0` compiler built by TSQ by default unless another version of compiler is needed. 
 
-Here are exmaples to install a packages,
+Here are exmaples to install packages,
 ```
 spack install openmpi@4.1.4%gcc@12.2.0
 spack install gromacs@2021.6%gcc@12.2.0 ^openmpi@4.1.4
 ```
 
-The build stage files are removed automatically by default. Keep it if needed,
-```
-spack install --keep-stage openmpi@4.0.7%gcc@12.2.0
-```
+Installation files of the package and its dependencies will be automacitally created in install root directory. All dependencies will be shared by future installtion of packages. 
 
 After the installation is seccessful, lua module files are created under module root path. There are complicated Spack-created tree paths within it, so it is not suitable to be exposed to users. To publish a package to users, make subdirectories with package name and soft links named `version.lua` under `/orcd/software/community/001/modulefiles/rocky8` to link to the module files. 
+
+The build stage files are removed automatically by default. Keep them if needed,
+```
+spack install --keep-stage openmpi@4.1.4%gcc@12.2.0
+```
+
+> Note: keeping build stage files may affect future installation unexpectedly, so it is not recommended unless very ncecessary. 
 
 When a building process fails, sometimes it is useful to clean cache, which unsets environment variables,
 ```
