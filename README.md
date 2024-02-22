@@ -77,7 +77,7 @@ The build stage files are removed automatically by default. Keep it if needed,
 spack install --keep-stage openmpi@4.0.7%gcc@12.2.0
 ```
 
-After the installation is seccessful, the lua module files are created under module root path. There are a long Spack-created tree paths within it, so it it not suitable to exposed to users. To publish a package to users, make subdirectories and links under `/orcd/software/community/001/modulefiles/rocky8` to link to the module files. 
+After the installation is seccessful, lua module files are created under module root path. There are complicated Spack-created tree paths within it, so it is not suitable to exposed to users. To publish a package to users, make subdirectories and links under `/orcd/software/community/001/modulefiles/rocky8` to link to the module files. 
 
 When a building process fails, sometimes it is useful to clean cache, which unsets environment variables,
 ```
