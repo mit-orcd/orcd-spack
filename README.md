@@ -1,32 +1,27 @@
 
 # orcd-spack
-ORCD configurations and best practices on Spack. 
+This repository is about ORCD configurations and best practices of Spack. 
 
-Refer to this page to set up Spack to inherit the TSQ configuration on Rocky8 systems.
-https://mit-orcd.github.io/orcd-docs-previews/PR/PR29/recipes/spack-basics/
 
-Supposed the Spack work directory $spack_work is under the home directory of each RCF members.
+## Usage
 
-This directory includes RCF configure files for Spack.
+First, refer to [this page](https://mit-orcd.github.io/orcd-docs-previews/PR/PR29/recipes/spack-basics/) to set up Spack to inherit the TSQ configuration on a Rocky8 systems.
 
-### Usage
+Each RCF member creates a Spack work directory `$spack_work` is under the home directory. The Spack progream is cloned from github and put under `$spack_work`.
 
 Log in a Rocky 8 head node, such as eofe10.mit.edu. Set up Spack environment every time after login.
-
+```
 cd $spack_work
 source spack/share/spack/setup-env.sh
 export SPACK_USER_CONFIG_PATH=`pwd`/user_config
+```
 
-These congifure files are copied from TSQ and customized by the RCF team.
-config.yaml, compilers.yaml modules.yaml  packages.yaml  upstreams.yaml.
+The congifure files include `config.yaml`, `compilers.yaml`, `modules.yaml`, `packages.yaml`, and `upstreams.yaml`. Put them in the directoty `$spack_work/use_config`. They will overright the default. 
 
-Put them in $spack_work/use_config
-They will overright the default.
-
-For config.yaml, it also works to put it in $spack_work/spack/etc/spack
+> Especally for `config.yaml`, it also works to put it in `$spack_work/spack/etc/spack`.
 
 
-### Connfigure yaml files
+## Connfigure yaml files
 
 config.yaml:
   --- Set install path
@@ -45,7 +40,7 @@ packages.yaml:
  --- change the group slurm_admin to orcd_rg_engagingsw_orcd-sw in the permsssion session.
 
 
-### Set LD_LIBRARY_PATH in a module file
+## Set LD_LIBRARY_PATH in a module file
 
 Execute these commands,
 
@@ -66,7 +61,7 @@ spack install openmpi@3.1.6%gcc@12.2.0
 then the LD_LIBRARY_PATH will be set in the module file.
 
 
-###  Installation
+##  Installation
 
 Use gcc 12.2.0 built by TSQ for most packages
 
