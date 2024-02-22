@@ -26,23 +26,24 @@ The congifure files include `config.yaml`, `compilers.yaml`, `modules.yaml`, `pa
 Here are notes of the modifications on the configure files.
 
 ***config.yaml:***
-  --- Set install root path as `orcd/software/community/001/rocky8`. Installation files will be automacitally created in there. 
-  --- Set install path scheme.
+* Set install root path as `orcd/software/community/001/rocky8`. Installation files will be automacitally created in there. 
+* Set install path scheme.
 
 ***compilers.yaml:***
- --- Add compling flags `-O3 -fPIC`, which are important to optimize the performance.
- --- When installing a new compiler, add it in this yaml file.
+* Add compling flags `-O3 -fPIC`, which are important to optimize the performance.
+* When installing a new compiler, add it in this yaml file.
 
 ***modules.yaml:***
- --- Set the module root path as `/orcd/software/community/001/spack/modulefiles`. Module files will be automacitally created in there. 
- --- Add the package name under the section `include` to let spack create module files for it. Use alphabetical order.
- --- If needed, add environment variables under the name of a package, so that Spack will set them in a module file. It is not recommended to set `LD_LIBRARY_PATH` here.
+* Set the module root path as `/orcd/software/community/001/spack/modulefiles`. Module files will be automacitally created in there. 
+* Add the package name under the section `include` to let spack create module files for it. Use alphabetical order.
+* If needed, add environment variables under the name of a package, so that Spack will set them in a module file. It is not recommended to set `LD_LIBRARY_PATH` here.
 
 ***packages.yaml:***
- --- Set the group `orcd_rg_engagingsw_orcd-sw` in the permsssion section.
+* Set the group `orcd_rg_engagingsw_orcd-sw` in the permsssion section.
 
 ***upstreams.yaml:***
-  --- Set the isntall tree to inherit the pakcages built by TSQ.
+* Set the isntall tree to inherit the pakcages built by TSQ.
+  
 
 ## Set LD_LIBRARY_PATH in a module file
 
@@ -63,9 +64,9 @@ Then the `LD_LIBRARY_PATH` will be set in the module file.
 
 ##  Installation
 
-Use `gcc 12.2.0` compiler built by TSQ by default unless another version of compiler is needed. 
+Use the `gcc 12.2.0` compiler built by TSQ by default unless another version of compiler is needed. 
 
-Here is are exmaples to install a packages,
+Here are exmaples to install a packages,
 ```
 spack install openmpi@4.1.4%gcc@12.2.0
 spack install gromacs@2021.6%gcc@12.2.0 ^openmpi@4.1.4
