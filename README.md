@@ -81,7 +81,7 @@ The build stage files are removed automatically by default. Keep them if needed,
 spack install --keep-stage openmpi@4.1.4%gcc@12.2.0
 ```
 
-> Note: keeping build stage files may affect future installation unexpectedly, so it is not recommended unless very ncecessary. 
+> Keeping build stage files may affect future installation unexpectedly, so it is not recommended unless very necessary. 
 
 When a building process fails, sometimes it is useful to clean cache, which unsets environment variables,
 ```
