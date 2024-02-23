@@ -74,16 +74,16 @@ spack install gromacs@2021.6%gcc@12.2.0 ^openmpi@4.1.4
 
 Installation files of the package and its dependencies will be automacitally created in install root directory. All dependencies will be shared by future installtion of packages. 
 
-After the installation is seccessful, lua module files are created under module root path. There are complicated Spack-created tree paths within it, so it is not suitable to be exposed to users. To publish a package to users, make subdirectories with package name and soft links named `version.lua` under `/orcd/software/community/001/modulefiles/rocky8` to link to the module files. 
+After the installation is seccessful, lua module files are created under the module root path. There are complicated Spack-created tree paths within it, so it is not suitable to be exposed to users. To publish a package to users, make subdirectories with package names and soft links named `$version.lua` under `/orcd/software/community/001/modulefiles/rocky8` to point to the module files. 
 
-The build stage files are removed automatically by default. Keep them if needed,
+The build stage files are removed automatically by default. Keep them using `--keep-stage` if needed, for example,
 ```
 spack install --keep-stage openmpi@4.1.4%gcc@12.2.0
 ```
 
 > Keeping build stage files may affect future installation unexpectedly, so it is not recommended unless very necessary. 
 
-When a building process fails, sometimes it is useful to clean cache, which unsets environment variables,
+When a building process fails, sometimes it is necessary to clean cache, which unsets environment variables,
 ```
 spack clean -m
 ```
