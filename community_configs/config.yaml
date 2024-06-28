@@ -1,0 +1,6 @@
+config:
+  install_tree:
+    root: /orcd/software/community/001/spack/install/community/
+  install_path_scheme: '{name}/{version}/{hash:7}'
+
+
