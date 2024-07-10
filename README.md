@@ -89,5 +89,10 @@ spack clean -m
 ```
 and then rebuild it.
 
+After a package is installed, if you need to recreate/update the module file, execute this command, 
+```
+spack module lmod refresh <pkg-name>
+```
+
 
 
