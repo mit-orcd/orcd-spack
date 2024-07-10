@@ -7,7 +7,7 @@ This repository is about ORCD configurations and best practices of Spack.
 
 First, refer to [this page](https://mit-orcd.github.io/orcd-docs-previews/PR/PR29/recipes/spack-basics/) to set up Spack to inherit the TSQ configuration on a Rocky8 systems.
 
-Every RCF member creates a Spack work directory `$spack_work` under the home directory. The Spack progream is cloned from github and put under `$spack_work`.
+Every RCF member creates a Spack work directory `$spack_work` under the home directory. The Spack program is cloned from github and put under `$spack_work`.
 
 Log in a Rocky 8 head node, such as `eofe10.mit.edu`. Set up Spack environment every time after login.
 ```
