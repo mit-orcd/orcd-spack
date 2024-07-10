@@ -17,7 +17,7 @@ modules:
       projections:
         all: '{name}/{version}_$date'
     roots:
-      lmod: /orcd/software/community/001/spack/modulefiles/core
+      lmod: /orcd/software/core/001/spack/modulefiles/
   prefix_inspections:
     lib64: [LD_LIBRARY_PATH]
     lib:
