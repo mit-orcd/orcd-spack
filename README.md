@@ -2,9 +2,11 @@
 # orcd-spack
 This repository contains ORCD Spack configurations and how to use Spack to install new software for core and community software stacks. We will follow these recipes on the Rocky 8 nodes moving forward.
 
-This repository contains two directories of Spack config files:
+This repository contains four directories of Spack config files:
 - core_configs
 - community_configs
+- dev_core
+- dev_community
 
 Each of these define different scopes for installing software, including where the software and modules should be installed. Spack scopes can be specified with each Spack command with the `-C` (`--config-scope`) flag. See the section on usage for more information.
 
@@ -118,6 +120,32 @@ cp /orcd/software/community/001/spack/modulefiles/community/linux-rocky8-x86_64/
 ```
 
 There may be multiple branches in the module directory tree, so you may need to do this a few times. We may also need to adjust how we organize modules if we see conflicts between modules in separate branches. Dependency modules have a short hash on them so that should help minimize conflicts with dependency modules.
+
+## Testing New Spack Builds
+
+Two more sets of config files are provided for testing new spack builds. This allows us to try things out without adding new software to our production spack install trees and helps keep things clean.
+
+These are in:
+
+- dev_core
+- dev_community
+
+They will put any builds and modules into a directory called "dev_spack" in your home directory. Each time you work on a new build it is best to start fresh and delete your previous test builds. Or rename the install root and module root to a different location in your home directory (`config.yaml` and `modules.yaml`).
+
+You can run the following lines to set up for running test builds:
+
+```
+SPACK_HOME=/orcd/software/community/001/spack/
+SPACK_INSTALL=$SPACK_HOME/spack_v0.22
+
+DEV_CORE_CONFIGS=$SPACK_HOME/dev_core
+DEV_COMMUNITY_CONFIGS=$SPACK_HOME/dev_community
+
+source $SPACK_INSTALL/share/spack/setup-env.sh
+export SPACK_DISABLE_LOCAL_CONFIG=true
+```
+
+And then use the `-C $DEV_CORE_CONFIGS` and `-C $DEV_COMMUNITY_CONFIGS` flags in your spack commands as needed.
 
 ## Configuration Files
 

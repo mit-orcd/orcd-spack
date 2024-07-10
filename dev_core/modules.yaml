@@ -1,0 +1,24 @@
+modules:
+  default:
+    enable:
+    - lmod
+    lmod:
+      hash_length: 0
+      hide_implicits: true
+      all:
+        autoload: direct
+        conflict:
+          - '{name}'
+        environment:
+          set:
+            SPACK_PKG_{name}_ROOT: '{package.cmake_prefix_paths}'
+      core_compilers:
+      - gcc@8.5.0
+      projections:
+        all: '{name}/{version}_$date'
+    roots:
+      lmod:  ~/dev_spack/community/modulefiles
+  prefix_inspections:
+    lib64: [LD_LIBRARY_PATH]
+    lib:
+    - LD_LIBRARY_PATH
