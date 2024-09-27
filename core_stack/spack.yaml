@@ -50,7 +50,7 @@ spack:
         core_compilers:
         - gcc@=8.5.0
         projections:
-          all: '{name}/{version}_$date'
+          all: '{name}/{version}'
       roots:
         lmod: /orcd/software/core/001/spack/modulefiles
   packages:
