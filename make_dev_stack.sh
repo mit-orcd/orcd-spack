@@ -13,22 +13,19 @@ fi
 
 source dev_stack-setup-env.sh
 
-cp -r base_stack $DEV_SPACK_HOME
-cp -r core_stack $DEV_SPACK_HOME
-cp -r community_stack $DEV_SPACK_HOME
 
-spack env activate $DEV_SPACK_HOME/base_stack
+spack env activate base_stack
 spack config add config:install_tree:root:$DEV_SPACK_HOME/core/pkg
 spack config add upstreams:core_stack:install_tree:/orcd/software/core/001/spack/pkg
 spack env deactivate
 
-spack env activate $DEV_SPACK_HOME/core_stack
+spack env activate core_stack
 spack config add config:install_tree:root:$DEV_SPACK_HOME/core/pkg
 spack config add modules:default:roots:lmod:$DEV_SPACK_HOME/core/modulefiles
 spack config add upstreams:core_stack:install_tree:/orcd/software/core/001/spack/pkg
 spack env deactivate
 
-spack env activate $DEV_SPACK_HOME/community_stack
+spack env activate community_stack
 spack config add config:install_tree:root:$DEV_SPACK_HOME/community/pkg
 spack config add modules:default:roots:lmod:$DEV_SPACK_HOME/community/modulefiles
 spack config add upstreams:core_stack:install_tree:/orcd/software/community/001/spack/pkg
