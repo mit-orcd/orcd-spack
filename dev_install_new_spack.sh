@@ -8,7 +8,7 @@
 source dev_stack-setup-env.sh
 
 # Use a newer version of spack, date the install
-git clone --depth=100 --branch=releases/$SPACK_VERSION https://github.com/spack/spack.git ./spack_$(date +"%Y%m")
+git clone --depth=100 --branch=releases/$SPACK_VERSION https://github.com/spack/spack.git $SPACK_HOME/spack_$(date +"%Y%m")
 
 if [ -L "$SPACK_INSTALL" ]; then
   unlink $SPACK_INSTALL
