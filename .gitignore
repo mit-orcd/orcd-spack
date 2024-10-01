@@ -1,3 +1,4 @@
 *~
 *.code-workspace
 dev_stack-setup-env.sh
+.spack-env/*
