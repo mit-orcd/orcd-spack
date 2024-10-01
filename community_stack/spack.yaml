@@ -110,6 +110,8 @@ spack:
       externals:
       - spec: munge@0.5.13%gcc@12.2.0 arch=linux-rocky8-x86_64
         prefix: /usr
-  upstreams:
-    core_stack:
-      install_tree: /orcd/software/community/001/spack/stage/lauren/tmp_prod_spack/core/pkg
+  mirrors:
+    core_mirror: file://orcd/software/community/001/spack/stage/lauren/tmp_prod_spack/mirrors/core/
+    community_mirror:
+      url: /orcd/software/community/001/spack/stage/lauren/tmp_prod_spack/mirrors/community/
+      autopush: true

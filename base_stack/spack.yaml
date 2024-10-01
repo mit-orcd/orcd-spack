@@ -89,3 +89,7 @@ spack:
       externals:
       - spec: munge@0.5.13%gcc@12.2.0 arch=linux-rocky8-x86_64
         prefix: /usr
+  mirrors:
+    core_mirror:
+      url: /orcd/software/community/001/spack/stage/lauren/tmp_prod_spack/mirrors/core/
+      autopush: true
