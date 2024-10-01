@@ -4,7 +4,7 @@ source stack-setup-env.sh
 
 export DEV_SPACK_HOME=/orcd/software/community/001/spack/stage/$USER/$(date +"%Y%m%d")/
 cp stack-setup-env.sh dev_stack-setup-env.sh
-sed -i s+$SPACK_HOME+$DEV_SPACK_HOME+ dev_stack-setup-env.sh
+sed -i '' s+$SPACK_HOME+$DEV_SPACK_HOME+ dev_stack-setup-env.sh
 if [ -L "$SPACK_INSTALL" ]; then
   ln -s $SPACK_INSTALL $DEV_SPACK_HOME/spack
 else
@@ -12,7 +12,6 @@ else
 fi
 
 source dev_stack-setup-env.sh
-
 
 spack env activate base_stack
 spack config add config:install_tree:root:$DEV_SPACK_HOME/core/pkg
