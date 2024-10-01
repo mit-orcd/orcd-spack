@@ -7,13 +7,13 @@ source stack-setup-env.sh
 
 spack env activate base_stack
 spack config add config:install_tree:root:$SPACK_HOME/core/pkg
-spack config remove upstreams
+spack config remove upstreams:core_stack
 spack env deactivate
 
 spack env activate core_stack
 spack config add config:install_tree:root:$SPACK_HOME/core/pkg
 spack config add modules:default:roots:lmod:$SPACK_HOME/core/modulefiles
-spack config remove upstreams
+spack config remove upstreams:core_stack
 spack env deactivate
 
 spack env activate community_stack
