@@ -3,3 +3,4 @@
 dev_stack-setup-env.sh
 transaction_lock
 *_stack/.spack-env/*
+slurm-*.out
