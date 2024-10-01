@@ -5,10 +5,6 @@
 
 source stack-setup-env.sh
 
-if [ ! -L "$SPACK_INSTALL" ]; then
-  bash install_new_spack
-fi
-
 spack env activate base_stack
 spack config add config:install_tree:root:$SPACK_HOME/core/pkg
 spack config remove upstreams:core_stack:install_tree
