@@ -9,7 +9,7 @@ source dev_stack-setup-env.sh
 
 # Base environment has only compilers installed, has same install_tree root as core_stack_env
 spack env activate base_stack
-if [ spack config get config | grep -q "root: $SPACK_HOME" ]; then
+if spack config get config | grep -q "root: $SPACK_HOME"; then
     spack install
     GCC_LOC=$(spack location -i gcc)
     spack env deactivate
