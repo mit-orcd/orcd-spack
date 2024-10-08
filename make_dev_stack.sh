@@ -31,4 +31,4 @@ spack env activate community_stack
 spack config add config:install_tree:root:$DEV_SPACK_HOME/community/pkg
 spack config add modules:default:roots:lmod:$DEV_SPACK_HOME/community/modulefiles
 #spack config add upstreams:community_stack:install_tree:/orcd/software/community/001/spack/pkg
-spack config add upstreams:core_stack:install_tree:/orcd/software/community/001/spack/stage/lauren/tmp_prod_spack/community/pkg
+spack config add upstreams:community_stack:install_tree:/orcd/software/community/001/spack/stage/lauren/tmp_prod_spack/community/pkg
