@@ -25,14 +25,14 @@ if spack config get config | grep -q "root: $SPACK_HOME"; then
     spack env activate $SPACK_HOME/core_stack
     spack compiler find $GCC_LOC # add compilers installed from base_stack_env
     spack install # install the rest of the core software
-    spack module lmod -y refresh
+    spack module lmod  refresh -y
     spack env deactivate
 
     # Community stack has install root for base+core as upstream
     spack env activate $SPACK_HOME/community_stack
     spack compiler find $GCC_LOC
     spack install
-    spack module lmod -y refresh
+    spack module lmod  refresh -y
 else
     echo "Not a production install root, skipping deployment. Run \"update_prod_stack.sh\" to convert to a production environment."
 fi
