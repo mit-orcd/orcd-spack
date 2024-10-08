@@ -3,6 +3,7 @@
 source stack-setup-env.sh
 
 export DEV_SPACK_HOME=/orcd/software/community/001/spack/stage/$USER/$(date +"%Y%m%d")
+mkdir -p $DEV_SPACK_HOME
 cp stack-setup-env.sh dev_stack-setup-env.sh
 sed -i s+$SPACK_HOME+$DEV_SPACK_HOME+ dev_stack-setup-env.sh
 if [ -L "$SPACK_INSTALL" ]; then
