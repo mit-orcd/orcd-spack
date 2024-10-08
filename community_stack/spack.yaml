@@ -49,6 +49,7 @@ spack:
           all: '{name}/{version}'
       roots:
         lmod: /orcd/software/community/001/spack/stage/lauren/tmp_prod_spack/community/modulefiles
+      arch_folder: false
   packages:
     all:
       target: [x86_64]

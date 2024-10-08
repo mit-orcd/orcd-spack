@@ -43,6 +43,8 @@ spack:
       lmod:
         hash_length: 0
         hide_implicits: true
+        include: ['gcc']
+        exclude: ['%gcc@8.5.0']
         all:
           autoload: none
           conflict:
@@ -53,6 +55,7 @@ spack:
           all: '{name}/{version}'
       roots:
         lmod: /orcd/software/community/001/spack/stage/lauren/tmp_prod_spack/core/modulefiles
+      arch_folder: false
   packages:
     all:
       target: [x86_64]
