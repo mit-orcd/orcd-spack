@@ -4,7 +4,7 @@
 
 export SPACK_VERSION=v0.22
 
-export SPACK_HOME=/orcd/software/community/001/spack/stage/lauren/tmp_prod_spack
+export SPACK_HOME=/orcd/software/community/001/spack/install
 export SPACK_INSTALL=$SPACK_HOME/spack
 
 export SPACK_DISABLE_LOCAL_CONFIG=true

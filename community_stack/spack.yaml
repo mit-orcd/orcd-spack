@@ -31,7 +31,7 @@ spack:
     install_tree:
       projections:
         all: '{name}/{version}/{hash:7}'
-      root: /orcd/software/community/001/spack/stage/lauren/tmp_prod_spack/community/pkg
+      root: /orcd/software/community/001/spack/pkg/
   modules:
     default:
       enable:
@@ -48,7 +48,7 @@ spack:
         projections:
           all: '{name}/{version}'
       roots:
-        lmod: /orcd/software/community/001/spack/stage/lauren/tmp_prod_spack/community/modulefiles
+        lmod: /orcd/software/community/001/spack/modulefiles
       arch_folder: false
   packages:
     all:
@@ -113,4 +113,4 @@ spack:
         prefix: /usr
   upstreams:
     core_stack:
-      install_tree: /orcd/software/community/001/spack/stage/lauren/tmp_prod_spack/core/pkg
+      install_tree: /orcd/software/core/001/spack/pkg

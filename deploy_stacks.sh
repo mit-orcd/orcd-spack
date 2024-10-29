@@ -8,7 +8,7 @@
 source stack-setup-env.sh
 
 spack env activate base_stack
-if spack config get config | grep -q "root: $SPACK_HOME"; then
+if spack config get config | grep -q "root: /orcd/software/core/001/spack/pkg"; then
     spack env deactivate
 
     cp -r base_stack $SPACK_HOME
