@@ -1,6 +1,0 @@
-config:
-  install_tree:
-    root: ~/dev_spack/community/pkg
-  install_path_scheme: '{name}/{version}/{hash:7}'
-
-

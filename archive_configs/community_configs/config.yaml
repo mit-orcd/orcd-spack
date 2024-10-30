@@ -1,6 +1,0 @@
-config:
-  install_tree:
-    root: /orcd/software/community/001/spack/pkg/
-  install_path_scheme: '{name}/{version}/{hash:7}'
-
-

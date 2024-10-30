@@ -1,6 +1,0 @@
-upstreams:
-  core-202406:
-   install_tree: /orcd/software/core/001/spack/pkg/
-  community-202407:
-   install_tree: /orcd/software/community/001/spack/pkg/
-   

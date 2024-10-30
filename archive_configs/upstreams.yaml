@@ -1,3 +1,0 @@
-upstreams:
-  orcd-rcf-2023:
-   install_tree: /software/spack-20230328/opt/spack
