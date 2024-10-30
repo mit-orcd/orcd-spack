@@ -89,3 +89,4 @@ spack:
       externals:
       - spec: munge@0.5.13%gcc@12.2.0 arch=linux-rocky8-x86_64
         prefix: /usr
+  upstreams: {}

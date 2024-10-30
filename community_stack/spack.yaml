@@ -6,7 +6,7 @@ spack:
   # add package specs to the `specs` list
   specs:
   - matrix:
-    - [openfoam-org@9, gromacs, quantum-espresso, hdf5+cxx+fortran+hl]
+    - [openfoam-org@9, gromacs, quantum-espresso, hdf5+cxx+fortran+hl, netcdf-c]
     - [arch=linux-rocky8-x86_64]
     - ['%gcc@12.2.0']
     - [^openmpi@4.1.4]
@@ -21,6 +21,19 @@ spack:
         cxx: /usr/bin/g++
         f77: /usr/bin/gfortran
         fc: /usr/bin/gfortran
+      flags: {}
+      operating_system: rocky8
+      target: x86_64
+      modules: []
+      environment: {}
+      extra_rpaths: []
+  - compiler:
+      spec: gcc@=12.2.0
+      paths:
+        cc: /orcd/software/core/001/spack/pkg/gcc/12.2.0/yt6vabm/bin/gcc
+        cxx: /orcd/software/core/001/spack/pkg/gcc/12.2.0/yt6vabm/bin/g++
+        f77: /orcd/software/core/001/spack/pkg/gcc/12.2.0/yt6vabm/bin/gfortran
+        fc: /orcd/software/core/001/spack/pkg/gcc/12.2.0/yt6vabm/bin/gfortran
       flags: {}
       operating_system: rocky8
       target: x86_64

@@ -31,6 +31,19 @@ spack:
       modules: []
       environment: {}
       extra_rpaths: []
+  - compiler:
+      spec: gcc@=12.2.0
+      paths:
+        cc: /orcd/software/core/001/spack/pkg/gcc/12.2.0/yt6vabm/bin/gcc
+        cxx: /orcd/software/core/001/spack/pkg/gcc/12.2.0/yt6vabm/bin/g++
+        f77: /orcd/software/core/001/spack/pkg/gcc/12.2.0/yt6vabm/bin/gfortran
+        fc: /orcd/software/core/001/spack/pkg/gcc/12.2.0/yt6vabm/bin/gfortran
+      flags: {}
+      operating_system: rocky8
+      target: x86_64
+      modules: []
+      environment: {}
+      extra_rpaths: []
   config:
     install_tree:
       projections:
@@ -43,7 +56,7 @@ spack:
       lmod:
         hash_length: 0
         hide_implicits: true
-        include: ['gcc']
+        include: [gcc]
         exclude: ['%gcc@8.5.0']
         all:
           autoload: none
@@ -117,3 +130,4 @@ spack:
       externals:
       - spec: munge@0.5.13%gcc@12.2.0 arch=linux-rocky8-x86_64
         prefix: /usr
+  upstreams: {}
