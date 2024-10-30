@@ -6,7 +6,7 @@ spack:
   # add package specs to the `specs` list
   specs:
   - matrix:
-    - [openfoam-org@9, gromacs, quantum-espresso, hdf5+cxx+fortran+hl, netcdf-c]
+    - [openfoam-org@10, gromacs, quantum-espresso, hdf5+cxx+fortran+hl, netcdf-c]
     - [arch=linux-rocky8-x86_64]
     - ['%gcc@12.2.0']
     - [^openmpi@4.1.4]
