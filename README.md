@@ -31,7 +31,7 @@ The production spack install space will already be set up when you add new packa
     3. Updates the environment configs install and module roots and adds upstreams to production spack install
     4. Creates `dev_stack-setup-env.sh` file for setting up dev environment
 3. Run `dev_deploy_stacks.sh` to add existing packages to dev environments
-4. Make changes, run `dev_deploy_stacks.sh` again to deploy to your dev environment, test installs
+4. Make changes, run `dev_deploy_stacks.sh` again to deploy to your dev environment, test installs. See "Basic Spack Usage" below for how to make these chages.
 5. Copy changes back to production by running `update_prod_stack.sh`
 6. Create a Pull Request for your branch. Check:
     1. You have run `update_prod_stack.sh`- the environment files should reflect the production space, not your development space
