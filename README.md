@@ -27,12 +27,15 @@ The production spack install space will already be set up when you add new packa
 1. Clone this repository on Engaging (if you haven't already). If you already have a clone run `git checkout main` and `git pull` to make sure you are on the main branch and have the latest updates.
 1. Create a branch. We like to use the convention of using your initials as a prefix for the branch name. For example: `git checkout -b lm/adding_netcdf`
 2. Run “make_dev_stack.sh” to set up dev stack, this:
-    1. Creates symlink to existing spack installation in dev space or installs spack if it doesn’t exist
-    3. Updates the environment configs install and module roots and adds upstreams to production spack install
+    1. Sets up a development space in /orcd/software/community/001/spack/stage/[USERNAME]/[YYYYMMDD]
+    2. Creates symlink to existing spack installation in dev space or installs spack if it doesn’t exist
+    3. Updates the environment configs install and module roots to do the development space and adds upstreams to production spack install
+      1. Install root is /orcd/software/community/001/spack/stage/[USERNAME]/[YYYYMMDD]/[core/community]/pkg
+      2. Module root is /orcd/software/community/001/spack/stage/[USERNAME]/[YYYYMMDD]/[core/community]/modulefiles
     4. Creates `dev_stack-setup-env.sh` file for setting up dev environment
 3. Run `dev_deploy_stacks.sh` to add existing packages to dev environments
-4. Make changes, run `dev_deploy_stacks.sh` again to deploy to your dev environment, test installs. See "Basic Spack Usage" below for how to make these chages.
-5. Copy changes back to production by running `update_prod_stack.sh`
+4. Make changes, run `dev_deploy_stacks.sh` again to deploy to your dev environment, test installs. See "Basic Spack Usage" below for how to make these changes.
+5. Copy changes back to production by running `update_prod_stack.sh` and clean up your development space. `update_prod_stack.sh` will print out the command you need to do this.
 6. Create a Pull Request for your branch. Check:
     1. You have run `update_prod_stack.sh`- the environment files should reflect the production space, not your development space
     2. Look at the *.yaml file diffs- do these make sense? The only thing that should have changed is the `specs` section.
@@ -44,7 +47,7 @@ The production spack install space will already be set up when you add new packa
 
 We are using [Spack Environments](https://spack.readthedocs.io/en/latest/environments.html) to manage our software stacks, roughly following the [Stacks Tutorial](https://spack-tutorial.readthedocs.io/en/latest/tutorial_stacks.html).
 
-You can run `source stack-setup-env.sh` to set up Spack, then for any of the environments run:
+You can run `source stack-setup-env.sh` to set up Spack (or `source dev_stack-setup-env.sh` if you are working in development), then for any of the environments run:
 
 ```
 spack env activate path/to/core_stack

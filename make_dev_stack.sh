@@ -12,6 +12,8 @@ else
   bash dev_install_new_spack.sh
 fi
 
+echo "Development Spack Space: " $DEV_SPACK_HOME
+
 source dev_stack-setup-env.sh
 
 spack env activate base_stack
