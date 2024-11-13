@@ -6,10 +6,15 @@ spack:
   # add package specs to the `specs` list
   specs:
   - matrix:
-    - [openfoam-org@10, gromacs, quantum-espresso, hdf5+cxx+fortran+hl, netcdf-c]
+    - [openfoam-org@10, gromacs, quantum-espresso, hdf5+cxx+fortran+hl, netcdf-c,
+      gromacs@2021.6 build_type=RelWithDebInfo]
     - [arch=linux-rocky8-x86_64]
     - ['%gcc@12.2.0']
     - [^openmpi@4.1.4]
+  - matrix:
+    - [lftp, openjdk@17.0.5_8, 'root@6.26.06 build_type=RelWithDebInfo cxxstd=17 patches=22af347,3115be9']
+    - ['%gcc@12.2.0']
+    - [arch=linux-rocky8-x86_64]
   view: false
   concretizer:
     unify: false
