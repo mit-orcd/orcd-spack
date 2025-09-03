@@ -6,22 +6,15 @@ spack:
   # add package specs to the `specs` list
   specs:
   - gcc@12.2.0%gcc@8.5.0 arch=linux-rocky8-x86_64
-  - openmpi@4.1.4%gcc@12.2.0 fabrics=ucx schedulers=slurm +pmi+legacylaunchers
-    ^ucx+ib_hw_tm+dc+rc+ud+mlx5_dv+rdmacm+cma+knem+xpmem+dm+verbs arch=linux-rocky8-x86_64
-  - cmake %gcc@12.2.0 arch=linux-rocky8-x86_64
-  - cuda@12.4 %gcc@12.2.0 arch=linux-rocky8-x86_64
-  - nvhpc+mpi %gcc@12.2.0 arch=linux-rocky8-x86_64
-  - openblas %gcc@12.2.0 threads=openmp arch=linux-rocky8-x86_64
-  - r %gcc@12.2.0 arch=linux-rocky8-x86_64
-  - rclone %gcc@12.2.0 arch=linux-rocky8-x86_64
-  - apptainer%gcc@12.2.0~suid arch=linux-rocky8-x86_64
-  - netlib-lapack@3.10.1 %gcc@12.2.0 arch=linux-rocky8-x86_64
-  - openblas@0.3.21 %gcc@12.2.0 arch=linux-rocky8-x86_64
+  - matrix:
+    - [cmake, cuda@12.4, nvhpc+mpi, openblas threads=openmp, r, rclone, apptainer~suid, netlib-lapack@3.10.1, openblas@0.3.21, openmpi@4.1.4 fabrics=ucx schedulers=slurm +pmi+legacylaunchers ^ucx+ib_hw_tm+dc+rc+ud+mlx5_dv+rdmacm+cma+knem+xpmem+dm+verbs]
+    - [arch=linux-rocky8-x86_64]
+    - ['%gcc@12.2.0']
   - matrix:
     - [netlib-scalapack@2.2.0, fftw@3.3.10+openmp]
     - [arch=linux-rocky8-x86_64]
     - ['%gcc@12.2.0']
-    - [^openmpi@4.1.4]
+    - [^openmpi@4.1.4%gcc@12.2.0 arch=linux-rocky8-x86_64 fabrics=ucx schedulers=slurm +pmi+legacylaunchers ^ucx+ib_hw_tm+dc+rc+ud+mlx5_dv+rdmacm+cma+knem+xpmem+dm+verbs]
   view: false
   concretizer:
     unify: false
@@ -57,7 +50,7 @@ spack:
     install_tree:
       projections:
         all: '{name}/{version}/{hash:7}'
-      root: /orcd/software/community/001/spack/stage/milechin/20250502/core/pkg
+      root: /orcd/software/community/001/spack/stage/milechin/20250829/core/pkg
   modules:
     default:
       enable:
@@ -76,7 +69,7 @@ spack:
         projections:
           all: '{name}/{version}'
       roots:
-        lmod: /orcd/software/community/001/spack/stage/milechin/20250502/core/modulefiles
+        lmod: /orcd/software/community/001/spack/stage/milechin/20250829/core/modulefiles
       arch_folder: false
   packages:
     all:

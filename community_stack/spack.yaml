@@ -50,7 +50,7 @@ spack:
     install_tree:
       projections:
         all: '{name}/{version}/{hash:7}'
-      root: /orcd/software/community/001/spack/stage/milechin/20250502/community/pkg
+      root: /orcd/software/community/001/spack/stage/milechin/20250829/community/pkg
   modules:
     default:
       enable:
@@ -67,7 +67,7 @@ spack:
         projections:
           all: '{name}/{version}'
       roots:
-        lmod: /orcd/software/community/001/spack/stage/milechin/20250502/community/modulefiles
+        lmod: /orcd/software/community/001/spack/stage/milechin/20250829/community/modulefiles
       arch_folder: false
   packages:
     all:
