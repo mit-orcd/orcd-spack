@@ -7,14 +7,17 @@ spack:
   specs:
   - gcc@12.2.0%gcc@8.5.0 arch=linux-rocky8-x86_64
   - matrix:
-    - [cmake, cuda@12.4, nvhpc+mpi, openblas threads=openmp, r, rclone, apptainer~suid, netlib-lapack@3.10.1, openblas@0.3.21, openmpi@4.1.4 fabrics=ucx schedulers=slurm +pmi+legacylaunchers ^ucx+ib_hw_tm+dc+rc+ud+mlx5_dv+rdmacm+cma+knem+xpmem+dm+verbs]
+    - [cmake, cuda@12.4, nvhpc+mpi, openblas threads=openmp, r, rclone, apptainer~suid,
+      netlib-lapack@3.10.1, openblas@0.3.21, openmpi@4.1.4 fabrics=ucx schedulers=slurm
+        +pmi+legacylaunchers ^ucx+ib_hw_tm+dc+rc+ud+mlx5_dv+rdmacm+cma+knem+xpmem+dm+verbs]
     - [arch=linux-rocky8-x86_64]
     - ['%gcc@12.2.0']
   - matrix:
     - [netlib-scalapack@2.2.0, fftw@3.3.10+openmp]
     - [arch=linux-rocky8-x86_64]
     - ['%gcc@12.2.0']
-    - [^openmpi@4.1.4%gcc@12.2.0 arch=linux-rocky8-x86_64 fabrics=ucx schedulers=slurm +pmi+legacylaunchers ^ucx+ib_hw_tm+dc+rc+ud+mlx5_dv+rdmacm+cma+knem+xpmem+dm+verbs]
+    - [^openmpi@4.1.4%gcc@12.2.0 arch=linux-rocky8-x86_64 fabrics=ucx schedulers=slurm
+        +pmi+legacylaunchers ^ucx+ib_hw_tm+dc+rc+ud+mlx5_dv+rdmacm+cma+knem+xpmem+dm+verbs]
   view: false
   concretizer:
     unify: false
@@ -50,7 +53,7 @@ spack:
     install_tree:
       projections:
         all: '{name}/{version}/{hash:7}'
-      root: /orcd/software/community/001/spack/stage/milechin/20250829/core/pkg
+      root: /orcd/software/core/001/spack/pkg
   modules:
     default:
       enable:
@@ -69,7 +72,7 @@ spack:
         projections:
           all: '{name}/{version}'
       roots:
-        lmod: /orcd/software/community/001/spack/stage/milechin/20250829/core/modulefiles
+        lmod: /orcd/software/core/001/spack/modulefiles
       arch_folder: false
   packages:
     all:
@@ -132,6 +135,4 @@ spack:
       externals:
       - spec: munge@0.5.13%gcc@12.2.0 arch=linux-rocky8-x86_64
         prefix: /usr
-  upstreams:
-    core_stack:
-      install_tree: /orcd/software/core/001/spack/pkg
+  upstreams: {}
