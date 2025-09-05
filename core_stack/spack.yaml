@@ -21,7 +21,6 @@ spack:
   view: false
   concretizer:
     unify: false
-    reuse: false
   compilers:
   - compiler:
       spec: gcc@=8.5.0
