@@ -13,7 +13,7 @@ spack:
     - [^openmpi@4.1.4]
   - matrix:
     - [lftp, openjdk@17.0.5_8, 'root@6.26.06 build_type=RelWithDebInfo cxxstd=17 patches=22af347,3115be9',
-      eigen, cdo]
+      eigen, cdo, gsl]
     - ['%gcc@12.2.0']
     - [arch=linux-rocky8-x86_64]
   view: false
