@@ -34,14 +34,15 @@ The production spack install space will already be set up when you add new packa
       2. Module root is /orcd/software/community/001/spack/stage/[USERNAME]/[YYYYMMDD]/[core/community]/modulefiles
     4. Creates `dev_stack-setup-env.sh` file for setting up dev environment
 3. Run `dev_deploy_stacks.sh` to add existing packages to dev environments
-4. Make changes, run `dev_deploy_stacks.sh` again to deploy to your dev environment, test installs. See "Basic Spack Usage" below for how to make these changes.
-5. Copy changes back to production by running `update_prod_stack.sh` and clean up your development space. `update_prod_stack.sh` will print out the command you need to do this.
-6. Create a Pull Request for your branch. Check:
+    4. Run: `sbatch dev_deploy_stacks.sh`
+5. Make changes, run `dev_deploy_stacks.sh` again to deploy to your dev environment, test installs. See "Basic Spack Usage" below for how to make these changes.
+6. Copy changes back to production by running `update_prod_stack.sh` and clean up your development space. `update_prod_stack.sh` will print out the command you need to do this.
+7. Create a Pull Request for your branch. Check:
     1. You have run `update_prod_stack.sh`- the environment files should reflect the production space, not your development space
     2. Look at the *.yaml file diffs- do these make sense? The only thing that should have changed is the `specs` section.
     3. Pull and merge any changes from the main branch into your branch: `git checkout main`, `git pull`, `git checkout my_branch`, `git merge main`
     4. If all this looks good merge into the main branch. If you are not sure ask another team member to take a look.
-7. Checkout the main branch and pull in your new changes (`git checkout main`, `git pull`). Run `deploy_stacks.sh` to install the new packages in the production space.
+8. Checkout the main branch and pull in your new changes (`git checkout main`, `git pull`). Run `deploy_stacks.sh` to install the new packages in the production space.
 
 ## Basic Spack Usage
 
