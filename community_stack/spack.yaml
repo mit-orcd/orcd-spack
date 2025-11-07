@@ -7,13 +7,14 @@ spack:
   specs:
   - matrix:
     - [openfoam-org@10, gromacs, quantum-espresso, hdf5+cxx+fortran+hl, netcdf-c,
-      netcdf-fortran, gromacs@2021.6 build_type=RelWithDebInfo, lammps+dpd-basic+dpd-meso+dpd-react+dpd-smooth+molecule+rigid+extra-dump+extra-fix+openmp+png]
+      netcdf-fortran, gromacs@2021.6 build_type=RelWithDebInfo, lammps+dpd-basic+dpd-meso+dpd-react+dpd-smooth+molecule+rigid+extra-dump+extra-fix+openmp+png,
+      fftw@3.3.10]
     - [arch=linux-rocky8-x86_64]
     - ['%gcc@12.2.0']
     - [^openmpi@4.1.4]
   - matrix:
     - [lftp, openjdk@17.0.5_8, 'root@6.26.06 build_type=RelWithDebInfo cxxstd=17 patches=22af347,3115be9',
-      eigen, cdo, gsl, ffmpeg@5.1.4]
+      eigen, cdo, gsl, ffmpeg@5.1.4, hdf5@1.14.2]
     - ['%gcc@12.2.0']
     - [arch=linux-rocky8-x86_64]
   view: false
