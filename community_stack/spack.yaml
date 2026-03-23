@@ -8,7 +8,7 @@ spack:
   - matrix:
     - [openfoam-org@10, gromacs, quantum-espresso, hdf5+cxx+fortran+hl, netcdf-c,
       netcdf-fortran, gromacs@2021.6 build_type=RelWithDebInfo, lammps+dpd-basic+dpd-meso+dpd-react+dpd-smooth+molecule+rigid+extra-dump+extra-fix+openmp+png,
-      fftw@3.3.10]
+      fftw@3.3.10, netcdf-cxx4]
     - [arch=linux-rocky8-x86_64]
     - ['%gcc@12.2.0']
     - [^openmpi@4.1.4]
