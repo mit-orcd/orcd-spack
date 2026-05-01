@@ -2,7 +2,7 @@
 
 # Source this file to set environment variables for stacks
 
-export SPACK_VERSION=v0.22
+export SPACK_VERSION=v1.1
 
 export SPACK_HOME=/orcd/software/community/001/spack/install
 export SPACK_INSTALL=$SPACK_HOME/spack

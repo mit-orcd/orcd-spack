@@ -65,17 +65,17 @@ regular package dependencies. This means:
 
 ### Phase 1 — Prepare blank environment files
 
-- [ ] Create a new branch for the upgrade work
-- [ ] Update `SPACK_VERSION` in `stack-setup-env.sh` (and `dev_stack-setup-env.sh`) from `v0.22`
+- [x] Create a new branch for the upgrade work
+- [x] Update `SPACK_VERSION` in `stack-setup-env.sh` (and `dev_stack-setup-env.sh`) from `v0.22`
       to `v1.1`
-- [ ] Leave `base_stack/spack.yaml` specs empty (no new packages go here; base_stack is retired
-      as an active build environment but the directory can stay for reference)
-- [ ] Clear `specs:` list in `core_stack/spack.yaml`; add `gcc@14` and `openmpi@5`
-- [ ] Clear `specs:` list in `community_stack/spack.yaml`
-- [ ] Add `gcc@12.2.0` as an **external package** in `core_stack/spack.yaml` and
+- [x] Leave `base_stack/spack.yaml` specs empty (base_stack is retired as an active build
+      environment but the directory can stay for reference)
+- [x] Clear `specs:` list in `core_stack/spack.yaml`
+- [x] Clear `specs:` list in `community_stack/spack.yaml`
+- [x] Add `gcc@12.2.0` as an **external package** in `core_stack/spack.yaml` and
       `community_stack/spack.yaml` (see snippet below)
-- [ ] Update `deploy_stacks.sh` and `dev_deploy_stacks.sh` to remove the base_stack pass and
-      `spack compiler find` calls (compilers are now regular dependencies in v1.0+)
+- [x] Update `deploy_stacks.sh`, `dev_deploy_stacks.sh`, `make_dev_stack.sh`, and
+      `update_prod_stack.sh` to remove the base_stack pass and `spack compiler find` calls
 
 #### gcc@12.2.0 external declaration (add to `packages:` in `core_stack` and `community_stack`)
 
@@ -131,6 +131,9 @@ packages:
 
 _Running log of decisions, issues encountered, and resolutions._
 
+- **2026-05-01** (Phase 1 complete): Updated SPACK_VERSION to v1.1 in setup-env scripts. Cleared
+  specs from all three environment files. Added gcc@12.2.0 external declaration to core_stack and
+  community_stack. Simplified deploy scripts (base_stack pass and spack compiler find removed).
 - **2026-05-01**: Initiated upgrade plan. Upgrading v0.22 → v1.1. New packages: gcc@14 and
   openmpi@5, both in core_stack. gcc@12.2.0 must be declared as an external (prefix:
   `/orcd/software/core/001/spack/pkg/gcc/12.2.0/yt6vabm`) in core_stack and community_stack.
