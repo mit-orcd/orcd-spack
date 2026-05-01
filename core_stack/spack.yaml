@@ -8,38 +8,11 @@ spack:
   view: false
   concretizer:
     unify: false
-  compilers:
-  - compiler:
-      spec: gcc@=8.5.0
-      paths:
-        cc: /usr/bin/gcc
-        cxx: /usr/bin/g++
-        f77: /usr/bin/gfortran
-        fc: /usr/bin/gfortran
-      flags: {}
-      operating_system: rocky8
-      target: x86_64
-      modules: []
-      environment: {}
-      extra_rpaths: []
-  - compiler:
-      spec: gcc@=12.2.0
-      paths:
-        cc: /orcd/software/core/001/spack/pkg/gcc/12.2.0/yt6vabm/bin/gcc
-        cxx: /orcd/software/core/001/spack/pkg/gcc/12.2.0/yt6vabm/bin/g++
-        f77: /orcd/software/core/001/spack/pkg/gcc/12.2.0/yt6vabm/bin/gfortran
-        fc: /orcd/software/core/001/spack/pkg/gcc/12.2.0/yt6vabm/bin/gfortran
-      flags: {}
-      operating_system: rocky8
-      target: x86_64
-      modules: []
-      environment: {}
-      extra_rpaths: []
   config:
     install_tree:
       projections:
         all: '{name}/{version}/{hash:7}'
-      root: /orcd/software/core/001/spack/pkg
+      root: /orcd/software/community/001/spack/stage/milechin/20260501/core/pkg
   modules:
     default:
       enable:
@@ -58,19 +31,36 @@ spack:
         projections:
           all: '{name}/{version}'
       roots:
-        lmod: /orcd/software/core/001/spack/modulefiles
+        lmod: /orcd/software/community/001/spack/stage/milechin/20260501/core/modulefiles
       arch_folder: false
   packages:
+    gcc:
+      externals:
+      - spec: gcc@8.5.0 languages:='c,c++,fortran'
+        prefix: /usr
+        extra_attributes:
+          compilers:
+            c: /usr/bin/gcc
+            cxx: /usr/bin/g++
+            fortran: /usr/bin/gfortran
+          flags: {}
+          environment: {}
+          extra_rpaths: []
+      - spec: gcc@12.2.0 languages:='c,c++,fortran'
+        prefix: /orcd/software/core/001/spack/pkg/gcc/12.2.0/yt6vabm
+        extra_attributes:
+          compilers:
+            c: /orcd/software/core/001/spack/pkg/gcc/12.2.0/yt6vabm/bin/gcc
+            cxx: /orcd/software/core/001/spack/pkg/gcc/12.2.0/yt6vabm/bin/g++
+            fortran: /orcd/software/core/001/spack/pkg/gcc/12.2.0/yt6vabm/bin/gfortran
+          flags: {}
+          environment: {}
+          extra_rpaths: []
     all:
       target: [x86_64]
       permissions:
         write: group
         group: orcd_rg_engagingsw_orcd-sw
-    gcc:
-      externals:
-      - spec: gcc@12.2.0
-        prefix: /orcd/software/core/001/spack/pkg/gcc/12.2.0/yt6vabm
-      buildable: false
     curl:
       externals:
       - spec: curl@7.61.1+gssapi+ldap+nghttp2
@@ -118,12 +108,13 @@ spack:
     slurm:
       buildable: false
       externals:
-      - spec: slurm@22.05.6%gcc@12.2.0~gtk~hdf5~hwloc~mariadb+pmix+readline~restd
-          arch=linux-rocky8-x86_64
+      - spec: slurm@22.05.6%gcc@12.2.0~gtk~hdf5~hwloc~mariadb+pmix+readline~restd arch=linux-rocky8-x86_64
         prefix: /usr
     munge:
       buildable: false
       externals:
       - spec: munge@0.5.13%gcc@12.2.0 arch=linux-rocky8-x86_64
         prefix: /usr
-  upstreams: {}
+  upstreams:
+    core_stack:
+      install_tree: /orcd/software/core/001/spack/pkg

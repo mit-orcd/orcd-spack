@@ -103,10 +103,8 @@ packages:
 
 ### Phase 3 — Verify blank environments
 
-- [ ] `spack env activate base_stack && spack install` — should be a no-op (gcc already installed
-      upstream)
-- [ ] `spack env activate core_stack && spack install` — should be a no-op
-- [ ] `spack env activate community_stack && spack install` — should be a no-op
+- [x] `spack env activate core_stack && spack install` — confirmed no-op
+- [x] `spack env activate community_stack && spack install` — confirmed no-op
 
 ### Phase 4 — Add new packages
 
@@ -136,6 +134,11 @@ packages:
 
 _Running log of decisions, issues encountered, and resolutions._
 
+- **2026-05-01** (Phase 3 complete): Both core_stack and community_stack install as no-ops under
+  Spack v1.1.1. During the first run Spack auto-migrated the deprecated `compilers:` section into
+  `packages:` externals with `extra_attributes`. Cleaned up both spack.yaml files: removed
+  `compilers:` section, removed duplicate gcc@12.2.0 entry, removed `buildable: false` on gcc
+  package (needed so gcc@14 can be built later).
 - **2026-05-01** (Phase 2 complete): Dev staging area created at
   `/orcd/software/community/001/spack/stage/milechin/20260501`. Spack v1.1.1 cloned and symlinked.
   Both `core_stack` and `community_stack` activate cleanly under the new Spack.
