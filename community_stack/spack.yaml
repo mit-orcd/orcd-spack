@@ -106,12 +106,12 @@ spack:
     slurm:
       buildable: false
       externals:
-      - spec: slurm@22.05.6%gcc@12.2.0~gtk~hdf5~hwloc~mariadb+pmix+readline~restd arch=linux-rocky8-x86_64
+      - spec: slurm@22.05.6~gtk~hdf5~hwloc~mariadb+pmix+readline~restd arch=linux-rocky8-x86_64
         prefix: /usr
     munge:
       buildable: false
       externals:
-      - spec: munge@0.5.13%gcc@12.2.0 arch=linux-rocky8-x86_64
+      - spec: munge@0.5.13 arch=linux-rocky8-x86_64
         prefix: /usr
   upstreams:
     community_stack:
