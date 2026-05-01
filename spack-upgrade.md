@@ -92,10 +92,12 @@ packages:
 > Declaring it as an external with its known prefix lets the new Spack use it as a compiler and
 > dependency without trying to rebuild or re-hash it.
 
-### Phase 2 — Install new Spack and set up dev environment
+### Phase 2 — Set up dev environment with new Spack
 
-- [ ] Run `install_new_spack.sh` (or `dev_install_new_spack.sh`) to clone new Spack version
-- [ ] Run `make_dev_stack.sh` to create a dated dev staging area
+- [ ] Run `make_dev_stack.sh` to create a dated dev staging area under
+      `/orcd/software/community/001/spack/stage/<user>/<date>/`
+- [ ] Run `dev_install_new_spack.sh` to clone Spack v1.1 into the dev staging area and update
+      the dev `spack` symlink (replaces the initial link to the production Spack)
 - [ ] Verify dev environment activates cleanly with new Spack version
 
 ### Phase 3 — Verify blank environments
@@ -115,6 +117,8 @@ packages:
 
 ### Phase 5 — Production deployment
 
+- [ ] Run `install_new_spack.sh` to clone Spack v1.1 into the production install space and
+      update the production `spack` symlink
 - [ ] Run `update_prod_stack.sh` to promote dev configs to production paths
 - [ ] Run `deploy_stacks.sh` to install in production
 - [ ] Verify existing modules still load for users
