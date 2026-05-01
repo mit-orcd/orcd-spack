@@ -108,10 +108,8 @@ packages:
 
 ### Phase 4 — Add new packages
 
-- [ ] Build `gcc@14%gcc@8.5.0` in `core_stack` — concretizes as gcc@14.3.0, submit via
-      `sbatch dev_deploy_stacks.sh`
-- [ ] Add `openmpi@5 %gcc@14` to `core_stack` specs once gcc@14 is built (Spack v1.1 requires
-      the compiler to be concrete/external before dependents can concretize)
+- [x] Build `gcc@14%gcc@8.5.0` in `core_stack` — built as gcc@14.3.0
+- [ ] Add `openmpi@5 %gcc@14` to `core_stack` specs and build
 - [ ] Regenerate modules: `spack module lmod refresh -y`
 - [ ] Test that new modules load correctly
 
@@ -135,7 +133,9 @@ packages:
 
 _Running log of decisions, issues encountered, and resolutions._
 
-- **2026-05-01** (Phase 4 in progress): Added gcc@14%gcc@8.5.0 to core_stack specs; concretizes
+- **2026-05-01** (Phase 4 in progress): gcc@14.3.0 built successfully in dev environment.
+  Next step: add openmpi@5 %gcc@14 to core_stack specs and build.
+- **2026-05-01** (Phase 4 started): Added gcc@14%gcc@8.5.0 to core_stack specs; concretizes
   as gcc@14.3.0. openmpi@5 must wait until gcc@14 is built — Spack v1.1 requires the compiler to
   be a concrete or external package before dependents can concretize. Also fixed slurm and munge
   external specs in both core_stack and community_stack by removing `%gcc@12.2.0` annotations
