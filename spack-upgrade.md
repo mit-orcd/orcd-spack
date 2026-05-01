@@ -94,11 +94,12 @@ packages:
 
 ### Phase 2 — Set up dev environment with new Spack
 
-- [ ] Run `make_dev_stack.sh` to create a dated dev staging area under
+- [x] Run `make_dev_stack.sh` to create a dated dev staging area under
       `/orcd/software/community/001/spack/stage/<user>/<date>/`
-- [ ] Run `dev_install_new_spack.sh` to clone Spack v1.1 into the dev staging area and update
-      the dev `spack` symlink (replaces the initial link to the production Spack)
-- [ ] Verify dev environment activates cleanly with new Spack version
+- [x] Run `dev_install_new_spack.sh` to clone Spack v1.1 into the dev staging area and update
+      the dev `spack` symlink (called automatically by `make_dev_stack.sh` since production spack
+      is still v0.22)
+- [x] Verify dev environment activates cleanly with new Spack version
 
 ### Phase 3 — Verify blank environments
 
@@ -135,6 +136,9 @@ packages:
 
 _Running log of decisions, issues encountered, and resolutions._
 
+- **2026-05-01** (Phase 2 complete): Dev staging area created at
+  `/orcd/software/community/001/spack/stage/milechin/20260501`. Spack v1.1.1 cloned and symlinked.
+  Both `core_stack` and `community_stack` activate cleanly under the new Spack.
 - **2026-05-01** (Phase 1 complete): Updated SPACK_VERSION to v1.1 in setup-env scripts. Cleared
   specs from all three environment files. Added gcc@12.2.0 external declaration to core_stack and
   community_stack. Simplified deploy scripts (base_stack pass and spack compiler find removed).
