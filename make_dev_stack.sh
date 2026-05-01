@@ -6,7 +6,7 @@ export DEV_SPACK_HOME=/orcd/software/community/001/spack/stage/$USER/$(date +"%Y
 mkdir -p $DEV_SPACK_HOME
 cp stack-setup-env.sh dev_stack-setup-env.sh
 sed -i s+$SPACK_HOME+$DEV_SPACK_HOME+ dev_stack-setup-env.sh
-if [ -L "$SPACK_INSTALL" ]; then
+if [ -L "$SPACK_INSTALL" ] && $SPACK_INSTALL/bin/spack --version 2>/dev/null | grep -q "^${SPACK_VERSION#v}"; then
   ln -s $SPACK_INSTALL $DEV_SPACK_HOME/spack
 else
   bash dev_install_new_spack.sh
