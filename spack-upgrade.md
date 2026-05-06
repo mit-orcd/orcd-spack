@@ -128,6 +128,7 @@ packages:
 |---------|-------|----------|-------|
 | `gcc@14` | core_stack | `%gcc@8.5.0` (system) | Compilers are regular deps in v1.0+ |
 | `openmpi@5` | core_stack | TBD — `%gcc@12.2.0` and/or `%gcc@14` | May build both |
+| `gromacs` | community_stack | TBD — `%gcc@12.2.0` | Needs SIMD support (will need to test) |
 
 ## Notes and Decisions
 
