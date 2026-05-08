@@ -134,6 +134,9 @@ packages:
 
 _Running log of decisions, issues encountered, and resolutions._
 
+- **2026-05-08**: openmpi@5 `+pmi` variant is only valid for openmpi@:4 and was dropped.
+  openmpi@5 uses PMIx via prrte automatically when `schedulers=slurm`. **User-facing impact:**
+  job scripts using `--mpi=pmi2` will need to switch to `--mpi=pmix` when using openmpi@5 modules.
 - **2026-05-06** Request to update Gromacs and build with SIMD support. Currently it gives a warning that it doesn't support SIMD, and seems to be running slower than it should. Would like to try to rebuild with SIMD support (may require rebuilding FFTW with SIMD support as well).
 - **2026-05-01** (Phase 4 in progress): gcc@14.3.0 built successfully in dev environment.
   Next step: add openmpi@5 %gcc@14 to core_stack specs and build.
