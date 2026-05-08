@@ -109,7 +109,8 @@ packages:
 ### Phase 4 — Add new packages
 
 - [x] Build `gcc@14%gcc@8.5.0` in `core_stack` — built as gcc@14.3.0
-- [ ] Add `openmpi@5 %gcc@14` to `core_stack` specs and build
+- [x] Add `openmpi@5 %gcc@14` to `core_stack` specs and build — built as openmpi@5.0.8
+- [x] Add `openmpi@5 %gcc@12.2.0` to `core_stack` specs and build — built as openmpi@5.0.8
 - [ ] Regenerate modules: `spack module lmod refresh -y`
 - [ ] Test that new modules load correctly
 
@@ -138,6 +139,7 @@ _Running log of decisions, issues encountered, and resolutions._
   openmpi@5 uses PMIx via prrte automatically when `schedulers=slurm`. **User-facing impact:**
   job scripts using `--mpi=pmi2` will need to switch to `--mpi=pmix` when using openmpi@5 modules.
 - **2026-05-06** Request to update Gromacs and build with SIMD support. Currently it gives a warning that it doesn't support SIMD, and seems to be running slower than it should. Would like to try to rebuild with SIMD support (may require rebuilding FFTW with SIMD support as well).
+- **2026-05-08** (Phase 4 in progress): openmpi@5.0.8 built successfully in dev environment — both %gcc@14 and %gcc@12.2.0 variants. Next steps: regenerate modules and test.
 - **2026-05-01** (Phase 4 in progress): gcc@14.3.0 built successfully in dev environment.
   Next step: add openmpi@5 %gcc@14 to core_stack specs and build.
 - **2026-05-01** (Phase 4 started): Added gcc@14%gcc@8.5.0 to core_stack specs; concretizes
