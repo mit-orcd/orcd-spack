@@ -111,8 +111,57 @@ packages:
 - [x] Build `gcc@14%gcc@8.5.0` in `core_stack` — built as gcc@14.3.0
 - [x] Add `openmpi@5 %gcc@14` to `core_stack` specs and build — built as openmpi@5.0.8
 - [x] Add `openmpi@5 %gcc@12.2.0` to `core_stack` specs and build — built as openmpi@5.0.8
-- [ ] Regenerate modules: `spack module lmod refresh -y`
-- [ ] Test that new modules load correctly
+- [x] Regenerate modules: `spack module lmod refresh -y` — modules confirmed present in staging
+- [x] Uninstall Lustre-linked openmpi builds and reinstall — forced by hash (`/tlbikgq` %gcc@14,
+      `/ksnfg6p` %gcc@12.2.0); new gcc@14 build is `cxdbpjk`
+- [x] Rebuild with `+internal-pmix` — bundles pmix and prrte inside openmpi so `prted` lives in
+      openmpi's own `bin/` (like `orted` in v4); forced by uninstalling by hash and reinstalling
+- [x] Regenerate modules after rebuild
+- [x] Test that new modules load and MPI works over InfiniBand — OSU-Microbenchmarks osu_bw
+      passed on both openmpi@5.0.8 %gcc@14 and %gcc@12.2.0
+
+#### OSU-Microbenchmarks InfiniBand test procedure
+
+The benchmarks must be recompiled against the new openmpi@5 before running. Note: the
+`module use` line for the gcc subdirectory is not needed — openmpi loads correctly without it.
+
+**Step 1 — Load the staged modules**
+
+```bash
+STAGING=/orcd/software/community/001/spack/stage/milechin/20260501
+
+module use $STAGING/core/modulefiles/Core
+module load gcc/14.3.0
+module load openmpi/5.0.8
+```
+
+**Step 2 — Compile against the new MPI**
+
+```bash
+export INSTALL_DIR=~/mpitutorial/OSU-MicroBenchmarks/install_ompi5_gcc14/
+cd ~/mpitutorial/OSU-MicroBenchmarks/osu-micro-benchmarks-7.3
+./configure CC=mpicc CXX=mpicxx --prefix=$INSTALL_DIR >log.config
+make clean
+make >log.make
+make install >log.install
+```
+
+**Step 3 — Submit the bandwidth test as a job**
+
+A ready-to-use run script is at:
+`~/mpitutorial/OSU-MicroBenchmarks/install/libexec/osu-micro-benchmarks/mpi/pt2pt/run_ompi5_gcc14.sh`
+
+Key differences from older run scripts:
+- Uses staged module paths (not production paths)
+- Use `mpirun` not `srun` — `srun --mpi=pmi2` causes openmpi@5/prrte to start each task as an
+  independent MPI singleton rather than a connected job; `mpirun` uses prrte directly and works
+  correctly within the SLURM allocation
+- Pass `--mca smsc ^knem` to suppress knem warnings (`/dev/knem` not loaded on compute nodes;
+  OpenMPI falls back to xpmem for single-copy shared memory)
+- Runs `osu_bw` from the new `install_ompi5_gcc14/` prefix
+
+**What to look for:** Bandwidth should be in the range of tens of GB/s on InfiniBand nodes (not
+~1 GB/s, which would indicate Ethernet fallback). Latency for small messages should be low (< 5 µs).
 
 ### Phase 5 — Production deployment
 
@@ -128,16 +177,39 @@ packages:
 | Package | Stack | Compiler | Notes |
 |---------|-------|----------|-------|
 | `gcc@14` | core_stack | `%gcc@8.5.0` (system) | Compilers are regular deps in v1.0+ |
-| `openmpi@5` | core_stack | TBD — `%gcc@12.2.0` and/or `%gcc@14` | May build both |
+| `openmpi@5~lustre` | core_stack | `%gcc@12.2.0` and `%gcc@14` | Both variants; `~lustre` required — cluster does not use Lustre |
 | `gromacs` | community_stack | TBD — `%gcc@12.2.0` | Needs SIMD support (will need to test) |
 
 ## Notes and Decisions
 
 _Running log of decisions, issues encountered, and resolutions._
 
+- **2026-06-24** (Phase 4 complete): Both openmpi@5.0.8 builds (%gcc@14 and %gcc@12.2.0) passed
+  the OSU-Microbenchmarks `osu_bw` point-to-point bandwidth test. InfiniBand confirmed working.
+  Phase 5 (production deployment) is the next step.
+- **2026-06-23** (Phase 4 in progress): OSU-Microbenchmarks configure fails — `ldd` confirms
+  `libmpi.so` from staged openmpi@5.0.8 has a runtime dependency on `liblustreapi.so.1` (not
+  present on this cluster). Spack database already records both builds (`tlbikgq` %gcc@14,
+  `ksnfg6p` %gcc@12.2.0) as `~lustre`, so `spack concretize -f && spack install` is a no-op.
+  The builds were likely done on a node where Lustre client libs were present and got auto-detected
+  by OpenMPI's configure. Fix: uninstall by hash to force a clean rebuild:
+  `spack uninstall /tlbikgq && spack uninstall /ksnfg6p && spack install`.
+- **2026-06-23** (Phase 4 in progress): Confirmed modules are present in staging area at
+  `/orcd/software/community/001/spack/stage/milechin/20260501/core/modulefiles/` — both
+  `gcc/14.3.0/openmpi/5.0.8.lua` and `gcc/12.2.0/openmpi/5.0.8.lua` are generated. Module refresh
+  step marked complete. Next step: compile OSU-Microbenchmarks against openmpi@5 and run pt2pt
+  bandwidth test to verify InfiniBand is being used.
 - **2026-05-08**: openmpi@5 `+pmi` variant is only valid for openmpi@:4 and was dropped.
-  openmpi@5 uses PMIx via prrte automatically when `schedulers=slurm`. **User-facing impact:**
-  job scripts using `--mpi=pmi2` will need to switch to `--mpi=pmix` when using openmpi@5 modules.
+  openmpi@5 uses PMIx via prrte automatically when `schedulers=slurm`. This cluster's SLURM does
+  not have a PMIx plugin (`srun --mpi=list` shows only `none`, `cray_shasta`, `pmi2`). Using
+  `srun --mpi=pmi2` causes prrte to treat each task as an independent MPI singleton — tasks don't
+  connect. **Fix: use `mpirun` within the SLURM allocation.** Also: in openmpi@5, the process
+  daemon (`prted`) is part of a separate prrte project and lives outside openmpi's `bin/` when
+  built against external prrte. The openmpi module does not add prrte's bin to PATH, so `prted`
+  can't be found when mpirun tries to spawn it on remote nodes. **Fix: rebuild with
+  `+internal-pmix`** — bundles prrte inside openmpi so `prted` is in openmpi's own `bin/`,
+  exactly like `orted` was in v4. **User-facing impact:** job scripts using openmpi@5 modules
+  should use `mpirun` instead of `srun`.
 - **2026-05-06** Request to update Gromacs and build with SIMD support. Currently it gives a warning that it doesn't support SIMD, and seems to be running slower than it should. Would like to try to rebuild with SIMD support (may require rebuilding FFTW with SIMD support as well).
 - **2026-05-08** (Phase 4 in progress): openmpi@5.0.8 built successfully in dev environment — both %gcc@14 and %gcc@12.2.0 variants. Next steps: regenerate modules and test.
 - **2026-05-01** (Phase 4 in progress): gcc@14.3.0 built successfully in dev environment.
