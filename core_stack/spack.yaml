@@ -15,7 +15,7 @@ spack:
     install_tree:
       projections:
         all: '{name}/{version}/{hash:7}'
-      root: /orcd/software/community/001/spack/stage/milechin/20260501/core/pkg
+      root: /orcd/software/core/001/spack/pkg
   modules:
     default:
       enable:
@@ -34,7 +34,7 @@ spack:
         projections:
           all: '{name}/{version}'
       roots:
-        lmod: /orcd/software/community/001/spack/stage/milechin/20260501/core/modulefiles
+        lmod: /orcd/software/core/001/spack/modulefiles
       arch_folder: false
   packages:
     gcc:
@@ -118,6 +118,4 @@ spack:
       externals:
       - spec: munge@0.5.13 arch=linux-rocky8-x86_64
         prefix: /usr
-  upstreams:
-    core_stack:
-      install_tree: /orcd/software/core/001/spack/pkg
+  upstreams: {}

@@ -165,9 +165,14 @@ Key differences from older run scripts:
 
 ### Phase 5 — Production deployment
 
-- [ ] Run `install_new_spack.sh` to clone Spack v1.1 into the production install space and
+All three steps must run together — `update_prod_stack.sh` sources `stack-setup-env.sh` which
+points to the production Spack. If production is still on v0.22, it cannot activate environments
+with v1.1 lockfiles. Step 1 must complete before Steps 2 or 3.
+
+- [x] Run `install_new_spack.sh` to clone Spack v1.1 into the production install space and
       update the production `spack` symlink
-- [ ] Run `update_prod_stack.sh` to promote dev configs to production paths
+- [x] Run `update_prod_stack.sh` to promote dev configs to production paths (requires Step 1 —
+      needs production Spack v1.1 to handle the v1.1 lockfiles)
 - [ ] Run `deploy_stacks.sh` to install in production
 - [ ] Verify existing modules still load for users
 - [ ] Verify new modules are available
@@ -184,6 +189,10 @@ Key differences from older run scripts:
 
 _Running log of decisions, issues encountered, and resolutions._
 
+- **2026-06-29** (Phase 5 in progress): Ran `install_new_spack.sh` — Spack v1.1.x cloned to
+  `/orcd/software/community/001/spack/install/spack_202606`; production `spack` symlink updated.
+  Ran `update_prod_stack.sh` — `core_stack/spack.yaml` and `community_stack/spack.yaml` updated
+  to production install paths and module roots. Next step: `sbatch deploy_stacks.sh`.
 - **2026-06-24** (Phase 4 complete): Both openmpi@5.0.8 builds (%gcc@14 and %gcc@12.2.0) passed
   the OSU-Microbenchmarks `osu_bw` point-to-point bandwidth test. InfiniBand confirmed working.
   Phase 5 (production deployment) is the next step.
