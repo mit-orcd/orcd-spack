@@ -4,8 +4,7 @@
 # configuration settings.
 spack:
   # add package specs to the `specs` list
-  specs:
-  - gcc@12.2.0%gcc@8.5.0 arch=linux-rocky8-x86_64
+  specs: []
   view: false
   concretizer:
     unify: false

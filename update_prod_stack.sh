@@ -8,11 +8,6 @@ export DEV_SPACK_HOME=$SPACK_HOME
 
 source stack-setup-env.sh
 
-spack env activate base_stack
-spack config add config:install_tree:root:/orcd/software/core/001/spack/pkg
-spack config remove upstreams:core_stack
-spack env deactivate
-
 spack env activate core_stack
 spack config add config:install_tree:root:/orcd/software/core/001/spack/pkg
 spack config add modules:default:roots:lmod:/orcd/software/core/001/spack/modulefiles
