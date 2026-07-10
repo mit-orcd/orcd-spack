@@ -8,6 +8,7 @@ spack:
   - gcc@14%gcc@8.5.0 arch=linux-rocky8-x86_64
   - openmpi@5 ~lustre +internal-pmix fabrics=ucx schedulers=slurm ^ucx+ib_hw_tm+dc+rc+ud+mlx5_dv+rdmacm+cma+knem+xpmem+dm+verbs %gcc@14 arch=linux-rocky8-x86_64
   - openmpi@5 ~lustre +internal-pmix fabrics=ucx schedulers=slurm ^ucx+ib_hw_tm+dc+rc+ud+mlx5_dv+rdmacm+cma+knem+xpmem+dm+verbs %gcc@12.2.0 arch=linux-rocky8-x86_64
+  - cmake@4.1.2 arch=linux-rocky8-x86_64
   view: false
   concretizer:
     unify: false
